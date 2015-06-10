@@ -168,7 +168,8 @@ module Rubies
         [ nil,
           Array.new,
           Hash.new,
-          RandomDataStructure.new.generate
+          RandomDataStructure.new.generate,
+          deep_delete(current, target)
         ]
     end
 
