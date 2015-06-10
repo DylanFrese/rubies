@@ -173,6 +173,15 @@ module Rubies
       ]
     end
 
+    # test user input against various tests, for each of which the
+    # input should fail. Returns true only if the user input fails
+    # each of the tests.
+    def test_answer(current, input, target)
+      tests(current, target).all? do |test|
+        !run_test(test, input, target)
+      end
+    end
+
     # test whether the answer provided by the given 
     # routine matches the target answer
     def run_test(current, input, target)
