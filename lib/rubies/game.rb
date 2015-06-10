@@ -157,31 +157,31 @@ module Rubies
 
     # deletes the target from the current data structure
     def deep_delete(current, target)
-        return current unless current.is_a? Enumerable
-        current.
-            reject  {|value| value == target}.
-            map     {|value| deep_delete(value, target)}
+      return current unless current.is_a? Enumerable
+      current.
+          reject  {|value| value == target}.
+          map     {|value| deep_delete(value, target)}
     end
 
     # creates an array of values for which any given answer should fail
     def tests(current, target)
-        [ nil,
-          Array.new,
-          Hash.new,
-          RandomDataStructure.new.generate,
-          deep_delete(current, target)
-        ]
+      [ nil,
+        Array.new,
+        Hash.new,
+        RandomDataStructure.new.generate,
+        deep_delete(current, target)
+      ]
     end
 
     # test whether the answer provided by the given 
     # routine matches the target answer
     def run_test(current, routine, target)
-        begin
-            output = routine.call
-            output == target
-        rescue Exception
-            false
-        end
+      begin
+        output = routine.call
+        output == target
+      rescue Exception
+        false
+      end
     end
 
     def generate_data_structure
