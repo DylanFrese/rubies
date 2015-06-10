@@ -155,6 +155,15 @@ module Rubies
       end
     end
 
+    # creates an array of values for which any given answer should fail
+    def tests(current, target)
+        [ nil,
+          Array.new,
+          Hash.new,
+          RandomDataStructure.new.generate
+        ]
+    end
+
     # test whether the answer provided by the given 
     # routine matches the target answer
     def run_test(current, routine, target)
