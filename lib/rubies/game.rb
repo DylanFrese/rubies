@@ -155,6 +155,17 @@ module Rubies
       end
     end
 
+    # test whether the answer provided by the given 
+    # routine matches the target answer
+    def run_test(current, routine, target)
+        begin
+            output = routine.call
+            output == target
+        rescue Exception
+            false
+        end
+    end
+
     def generate_data_structure
       rds = RandomDataStructure.new
       current = rds.generate
