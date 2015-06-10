@@ -107,6 +107,16 @@ module Rubies
       puts "Correct!".colorize(:green)
     end
 
+    def cheater
+      @num_wrong += 1
+      puts "Please provide an answer "\
+            "that operates on the given values. ".colorize(:light_red)
+      puts
+      puts "Try not to directly reference the value directly, ".colorize(:light_red)
+      puts
+      puts "Instead, try accessing the value by its index or key!".colorize(:light_red)
+    end
+
     def prompter(answer)
       print "Write ruby code to find the following value".colorize(:light_blue)
       print " (or enter ".colorize(:light_blue) + 'NEW'.colorize(:green)
@@ -214,8 +224,12 @@ module Rubies
           return
         else
           if check_answer(current, input, target)
-            itsright
-            correct = true
+            if !test_answer(current, input, target)
+              cheater
+            else
+              itsright
+              correct = true
+            end
           else
             itswrong(target)
           end
