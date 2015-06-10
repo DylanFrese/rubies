@@ -175,7 +175,8 @@ module Rubies
 
     # test whether the answer provided by the given 
     # routine matches the target answer
-    def run_test(current, routine, target)
+    def run_test(current, input, target)
+      routine = lambda { eval(input) }
       begin
         output = routine.call
         output == target
