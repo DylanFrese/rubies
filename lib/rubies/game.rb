@@ -155,6 +155,14 @@ module Rubies
       end
     end
 
+    # deletes the target from the current data structure
+    def deep_delete(current, target)
+        return current unless current.is_a? Enumerable
+        current.
+            reject  {|value| value == target}.
+            map     {|value| deep_delete(value, target)}
+    end
+
     # creates an array of values for which any given answer should fail
     def tests(current, target)
         [ nil,
